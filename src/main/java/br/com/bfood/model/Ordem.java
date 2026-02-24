@@ -22,6 +22,14 @@ public class Ordem {
     @ManyToOne
     private Cliente cliente;
 
+    public List<OrdensCardapio> getOrdensCardapioList() {
+        return ordensCardapioList;
+    }
+
+    public void setOrdensCardapioList(List<OrdensCardapio> ordensCardapioList) {
+        this.ordensCardapioList = ordensCardapioList;
+    }
+
     @OneToMany(mappedBy = "ordem", cascade = CascadeType.ALL)
     private List<OrdensCardapio> ordensCardapioList = new ArrayList<>();
 
@@ -35,7 +43,7 @@ public class Ordem {
         ordensCardapio.setOrdem(this);
         this.ordensCardapioList.add(ordensCardapio);
         BigDecimal qtd = BigDecimal.valueOf(ordensCardapio.getQuantidade());
-        BigDecimal valor_parcial = ordensCardapio.getValor();
+        BigDecimal valor_parcial = ordensCardapio.getValorDeRegistro();
         this.valorTotal = qtd.multiply(valor_parcial);
     }
 
@@ -70,6 +78,7 @@ public class Ordem {
                 ", valorTotal=" + valorTotal +
                 ", dataDecriacao=" + dataDecriacao +
                 ", cliente=" + cliente +
+                ", ordensCarpio=" + ordensCardapioList +
                 '}';
     }
 }

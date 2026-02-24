@@ -4,6 +4,7 @@ import br.com.bfood.dao.CardapioDao;
 import br.com.bfood.dao.ClienteDao;
 import br.com.bfood.dao.OrdemDao;
 import br.com.bfood.model.Cliente;
+import br.com.bfood.model.Endereco;
 import br.com.bfood.model.Ordem;
 import br.com.bfood.model.OrdensCardapio;
 import br.com.bfood.utils.JPAUtil;
@@ -22,14 +23,16 @@ public class OrdemService {
         ClienteDao clienteDao = new ClienteDao(entityManager);
         OrdemDao ordemDao = new OrdemDao(entityManager);
 
-        Cliente felipe = new Cliente("11122233345", "Felipe", "10102334");
+        Endereco endFelipe = new Endereco("Do lado da loja de informática", "03032001", "Abacaxinópoles",
+                "SP", "Rua um", 157);
+        Cliente felipe = new Cliente("11122233345", "Felipe");
+        felipe.addEndereco(endFelipe);
         Ordem ordem = new Ordem(felipe);
-
         ordem.addOrdensCardapio(new OrdensCardapio(ordem, cardapioDao.consultarPorId(1), 2));
         clienteDao.cadastrar(felipe);
         ordemDao.cadastrar(ordem);
 
-        System.out.println(ordemDao.consultarTodos());
+        System.out.println(ordem);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
