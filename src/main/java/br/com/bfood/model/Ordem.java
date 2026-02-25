@@ -42,9 +42,10 @@ public class Ordem {
     public void addOrdensCardapio(OrdensCardapio ordensCardapio){
         ordensCardapio.setOrdem(this);
         this.ordensCardapioList.add(ordensCardapio);
-        BigDecimal qtd = BigDecimal.valueOf(ordensCardapio.getQuantidade());
-        BigDecimal valor_parcial = ordensCardapio.getValorDeRegistro();
-        this.valorTotal = qtd.multiply(valor_parcial);
+        this.valorTotal = ordensCardapio.getValorDeRegistro().multiply(
+                BigDecimal.valueOf(ordensCardapio.getQuantidade())
+        );
+
     }
 
     public BigDecimal getValorTotal() {
