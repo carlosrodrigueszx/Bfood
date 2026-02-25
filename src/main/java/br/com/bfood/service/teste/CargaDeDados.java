@@ -54,8 +54,17 @@ public class CargaDeDados {
                 categorias.get(1)
         );
 
+        Cardapio saladaDoce = new Cardapio(
+                "Salada de frutas doces",
+                "Salada com pedaços de manga, abacaxi, maçã, repolho e alface",
+                true,
+                BigDecimal.valueOf(30),
+                categorias.get(2)
+        );
+
         cardapioDao.cadastrar(moqueca);
         cardapioDao.cadastrar(bife);
+        cardapioDao.cadastrar(saladaDoce);
 
         entityManager.flush();
         entityManager.clear();
