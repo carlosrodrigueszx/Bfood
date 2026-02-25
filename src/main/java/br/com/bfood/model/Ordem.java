@@ -42,9 +42,9 @@ public class Ordem {
     public void addOrdensCardapio(OrdensCardapio ordensCardapio){
         ordensCardapio.setOrdem(this);
         this.ordensCardapioList.add(ordensCardapio);
-        this.valorTotal = ordensCardapio.getValorDeRegistro().multiply(
+        this.valorTotal = this.valorTotal.add( ordensCardapio.getValorDeRegistro().multiply(
                 BigDecimal.valueOf(ordensCardapio.getQuantidade())
-        );
+        ));
 
     }
 
