@@ -16,10 +16,9 @@ public class OrdemService {
         CargaDeDados.cadastrarClientes(entityManager);
         CargaDeDados.cadastrarOrdensClientes(entityManager);
 
-        EnderecoDao enderecoDao = new EnderecoDao(entityManager);
+        ClienteDao clienteDao = new ClienteDao(entityManager);
 
-        System.out.println(enderecoDao.consultarClientes(null, null, "Rua dois"));
-        System.out.println(enderecoDao.consultarClientesComCriteria(null, null, "Rua dois"));
+        System.out.println(clienteDao.consultarTodos());
 
         entityManager.getTransaction().commit();
         entityManager.close();
