@@ -84,6 +84,8 @@ public class CargaDeDados {
                 "SP", "Rua um", 157));
 
         maria.addEndereco(new Endereco("Casa no fim da rua", "19192001", "Pintoanápoles", "MG", "Rua três", 780));
+        rodrigo.addEndereco(new Endereco("Vizinho a sorveteria", "63630102", "Pedra Branca",
+                "CE", "Rua dois", 82));
         clienteDao.cadastrar(rodolfo);
         clienteDao.cadastrar(felipe);
         clienteDao.cadastrar(rodrigo);

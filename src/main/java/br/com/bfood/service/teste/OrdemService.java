@@ -1,12 +1,7 @@
 package br.com.bfood.service.teste;
 
-import br.com.bfood.dao.CardapioDao;
 import br.com.bfood.dao.ClienteDao;
-import br.com.bfood.dao.OrdemDao;
-import br.com.bfood.model.Cliente;
-import br.com.bfood.model.Endereco;
-import br.com.bfood.model.Ordem;
-import br.com.bfood.model.OrdensCardapio;
+import br.com.bfood.dao.EnderecoDao;
 import br.com.bfood.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -21,9 +16,9 @@ public class OrdemService {
         CargaDeDados.cadastrarClientes(entityManager);
         CargaDeDados.cadastrarOrdensClientes(entityManager);
 
-        ClienteDao clienteDao = new ClienteDao(entityManager);
+        EnderecoDao enderecoDao = new EnderecoDao(entityManager);
 
-        System.out.println(clienteDao.consultarPorNome("Rod"));
+        System.out.println(enderecoDao.consultarClientes("SP", null, null));
 
         entityManager.getTransaction().commit();
         entityManager.close();
