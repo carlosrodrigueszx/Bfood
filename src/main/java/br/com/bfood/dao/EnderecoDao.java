@@ -43,7 +43,7 @@ public class EnderecoDao {
     }
 
     public List<ClienteVo> consultarClientes(final String estado, final String cidade, final String rua){
-        String jpql = "SELECT new br.com.bfood.vo.ClienteVo(e.cliente.cpf, e.cliente.nome) " +
+        String jpql = "SELECT new br.com.bfood.vo.ClienteVo(e.cliente.clienteId.cpf, e.cliente.nome) " +
                 "FROM Endereco e WHERE 1=1 ";
 
         if (Objects.nonNull(estado)){
@@ -80,7 +80,7 @@ public class EnderecoDao {
         CriteriaQuery<ClienteVo> query = builder.createQuery(ClienteVo.class);
         Root<Endereco> root = query.from(Endereco.class);
 
-        query.multiselect(root.get("cliente").get("cpf"), root.get("cliente").get("nome"));
+        query.multiselect(root.get("cliente").get("clienteId").get("cpf"), root.get("cliente").get("nome"));
 
         Predicate predicate = builder.and();
 

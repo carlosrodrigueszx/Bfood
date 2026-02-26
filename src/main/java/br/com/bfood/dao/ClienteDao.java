@@ -1,10 +1,10 @@
 package br.com.bfood.dao;
 
-import br.com.bfood.model.Cardapio;
+
 import br.com.bfood.model.Cliente;
+import br.com.bfood.model.ClienteId;
 
 import javax.persistence.EntityManager;
-import java.math.BigDecimal;
 import java.util.List;
 
 public class ClienteDao {
@@ -30,11 +30,14 @@ public class ClienteDao {
         this.entityManager.remove(cliente);
     }
 
+    public Cliente consultarPorId(final ClienteId id){
+        return this.entityManager.find(Cliente.class, id);
+    }
+
     public List<Cliente> consultarTodos(){
         String jpql = "SELECT c FROM Cliente c";
         return entityManager.createQuery(jpql, Cliente.class).getResultList();
     }
-
 
     public List<Cliente> consultarPorNome(final String nome) {
         try{

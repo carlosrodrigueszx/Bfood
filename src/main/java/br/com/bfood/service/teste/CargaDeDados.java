@@ -73,10 +73,10 @@ public class CargaDeDados {
 
     public static void cadastrarClientes(EntityManager entityManager){
         ClienteDao clienteDao = new ClienteDao(entityManager);
-        Cliente rodolfo = new Cliente("12344466678", "Rodolfo Assis");
-        Cliente rodrigo = new Cliente("10340461178", "Rodrigo Assis");
-        Cliente felipe = new Cliente("11122233345", "Felipe Assis");
-        Cliente maria = new Cliente("29003182273", "Maria");
+        Cliente rodolfo = new Cliente("12344466678", "rodolfo@gmail.com", "Rodolfo Assis");
+        Cliente rodrigo = new Cliente("10340461178", "rodrigo@gmail.com", "Rodrigo Assis");
+        Cliente felipe = new Cliente("11122233345","felipe@gmail.com", "Felipe Assis");
+        Cliente maria = new Cliente("29003182273","maria@gmail.com", "Maria");
         rodolfo.addEndereco(new Endereco("Vizinho ao banco Caixa", "63630100", "Pedra Branca",
                 "CE", "Rua dois", 155));
 

@@ -1,7 +1,7 @@
 package br.com.bfood.service.teste;
 
 import br.com.bfood.dao.ClienteDao;
-import br.com.bfood.dao.EnderecoDao;
+import br.com.bfood.model.ClienteId;
 import br.com.bfood.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -18,7 +18,7 @@ public class OrdemService {
 
         ClienteDao clienteDao = new ClienteDao(entityManager);
 
-        System.out.println(clienteDao.consultarTodos());
+        System.out.println(clienteDao.consultarPorId(new ClienteId( "maria@gmail.com", "29003182273")));
 
         entityManager.getTransaction().commit();
         entityManager.close();
