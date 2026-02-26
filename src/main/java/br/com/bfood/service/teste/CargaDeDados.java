@@ -2,8 +2,9 @@ package br.com.bfood.service.teste;
 
 import br.com.bfood.dao.CardapioDao;
 import br.com.bfood.dao.CategoriaDao;
-import br.com.bfood.model.Cardapio;
-import br.com.bfood.model.Categoria;
+import br.com.bfood.dao.ClienteDao;
+import br.com.bfood.dao.OrdemDao;
+import br.com.bfood.model.*;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -65,6 +66,49 @@ public class CargaDeDados {
         cardapioDao.cadastrar(moqueca);
         cardapioDao.cadastrar(bife);
         cardapioDao.cadastrar(saladaDoce);
+
+        entityManager.flush();
+        entityManager.clear();
+    }
+
+    public static void cadastrarClientes(EntityManager entityManager){
+        ClienteDao clienteDao = new ClienteDao(entityManager);
+        Cliente rodolfo = new Cliente("12344466678", "Rodolfo");
+        Cliente felipe = new Cliente("11122233345", "Felipe");
+        Cliente maria = new Cliente("29003182273", "Maria");
+        rodolfo.addEndereco(new Endereco("Vizinho ao banco Caixa", "63630100", "Pedra Branca",
+                "CE", "Rua dois", 155));
+
+        felipe.addEndereco(new Endereco("Do lado da loja de informática", "03032001", "Abacaxinópoles",
+                "SP", "Rua um", 157));
+
+        maria.addEndereco(new Endereco("Casa no fim da rua", "19192001", "Pintoanápoles", "MG", "Rua três", 780));
+        clienteDao.cadastrar(rodolfo);
+        clienteDao.cadastrar(felipe);
+        clienteDao.cadastrar(maria);
+        entityManager.flush();
+        entityManager.clear();
+    }
+
+    public static void cadastrarOrdensClientes(EntityManager entityManager){
+        OrdemDao ordemDao = new OrdemDao(entityManager);
+        ClienteDao clienteDao = new ClienteDao(entityManager);
+        CardapioDao cardapioDao = new CardapioDao(entityManager);
+
+        Ordem ordem1 = new Ordem(clienteDao.consultarTodos().get(0));
+        Ordem ordem2 = new Ordem(clienteDao.consultarTodos().get(1));
+        Ordem ordem3 = new Ordem(clienteDao.consultarTodos().get(2));
+        Ordem ordem4 = new Ordem(clienteDao.consultarTodos().get(1));
+
+        ordem1.addOrdensCardapio(new OrdensCardapio(ordem1, cardapioDao.consultarTodos().get(0), 5));
+        ordem2.addOrdensCardapio(new OrdensCardapio(ordem2, cardapioDao.consultarTodos().get(1), 4));
+        ordem3.addOrdensCardapio(new OrdensCardapio(ordem3, cardapioDao.consultarTodos().get(2), 5));
+        ordem4.addOrdensCardapio(new OrdensCardapio(ordem4, cardapioDao.consultarTodos().get(1), 7));
+
+        ordemDao.cadastrar(ordem1);
+        ordemDao.cadastrar(ordem2);
+        ordemDao.cadastrar(ordem3);
+        ordemDao.cadastrar(ordem4);
 
         entityManager.flush();
         entityManager.clear();
