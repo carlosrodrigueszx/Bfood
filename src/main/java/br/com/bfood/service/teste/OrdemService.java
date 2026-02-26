@@ -22,9 +22,10 @@ public class OrdemService {
         CargaDeDados.cadastrarOrdensClientes(entityManager);
 
         OrdemDao ordemDao = new OrdemDao(entityManager);
+        Ordem ordem = ordemDao.joinFetchCliente(2);
 
-        System.out.println(ordemDao.consultarItensMaisVendidos());
         entityManager.getTransaction().commit();
         entityManager.close();
+        System.out.println(ordem.getCliente().getNome());
     }
 }

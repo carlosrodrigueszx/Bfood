@@ -43,4 +43,8 @@ public class OrdemDao {
         return entityManager.createQuery(jpql, ItensPrincipaisVo.class).getResultList();
     }
 
+    public Ordem joinFetchCliente(final Integer id){
+        String jpql = "SELECT o FROM Ordem o JOIN FETCH o.cliente WHERE o.id = :id";
+        return entityManager.createQuery(jpql, Ordem.class).setParameter("id", id).getSingleResult();
+    }
 }
