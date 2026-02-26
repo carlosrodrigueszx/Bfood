@@ -21,11 +21,11 @@ public class OrdemService {
         CargaDeDados.cadastrarClientes(entityManager);
         CargaDeDados.cadastrarOrdensClientes(entityManager);
 
-        OrdemDao ordemDao = new OrdemDao(entityManager);
-        Ordem ordem = ordemDao.joinFetchCliente(2);
+        ClienteDao clienteDao = new ClienteDao(entityManager);
+
+        System.out.println(clienteDao.consultarPorNome("Rod"));
 
         entityManager.getTransaction().commit();
         entityManager.close();
-        System.out.println(ordem.getCliente().getNome());
     }
 }

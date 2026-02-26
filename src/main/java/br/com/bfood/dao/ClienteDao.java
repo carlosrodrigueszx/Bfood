@@ -36,13 +36,13 @@ public class ClienteDao {
     }
 
 
-    public Cliente consultarPorNome(final String filtro) {
-        try {
-            String jpql = "SELECT c FROM Cliente c WHERE upper(c.nome) = upper(:nome)";
-            return entityManager.createQuery(jpql, Cliente.class).setParameter("nome", filtro).getSingleResult();
-
+    public List<Cliente> consultarPorNome(final String nome) {
+        try{
+            String jpql = "SELECT c FROM Cliente c WHERE lower(c.nome) LIKE lower(:nome)";
+            return entityManager.createQuery(jpql, Cliente.class).setParameter(
+                    "nome", "%" + nome + "%").getResultList();
         } catch (Exception e) {
-            return null;
+            throw new RuntimeException(e);
         }
     }
 }
