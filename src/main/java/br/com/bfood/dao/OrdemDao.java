@@ -1,6 +1,7 @@
 package br.com.bfood.dao;
 
 import br.com.bfood.model.Ordem;
+import br.com.bfood.vo.ItensPrincipaisVo;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -33,13 +34,13 @@ public class OrdemDao {
         return entityManager.createQuery(jpql, Ordem.class).getResultList();
     }
 
-    public List<Object[]> consultarItensMaisVendidos(){
-        String jpql = "SELECT c.nome, SUM(oc.quantidade) FROM Ordem o " +
+    public List<ItensPrincipaisVo> consultarItensMaisVendidos(){
+        String jpql = "SELECT new br.com.bfood.vo.ItensPrincipaisVo(c.nome, SUM(oc.quantidade)) FROM Ordem o " +
                 "JOIN OrdensCardapio oc ON o.id = oc.cardapio.id " +
                 "JOIN oc.cardapio c " +
                 "GROUP BY c.nome " +
                 "ORDER BY SUM(oc.quantidade) DESC";
-        return entityManager.createQuery(jpql, Object[].class).getResultList();
+        return entityManager.createQuery(jpql, ItensPrincipaisVo.class).getResultList();
     }
 
 }
