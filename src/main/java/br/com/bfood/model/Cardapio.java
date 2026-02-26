@@ -29,7 +29,7 @@ public class Cardapio {
         this.categoria = categoria;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
 

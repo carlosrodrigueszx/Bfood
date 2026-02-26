@@ -19,7 +19,7 @@ public class Ordem {
     @Column(name = "data_de_criacao")
     private LocalDateTime dataDecriacao = LocalDateTime.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
     public List<OrdensCardapio> getOrdensCardapioList() {
