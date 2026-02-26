@@ -18,7 +18,7 @@ public class OrdemService {
 
         ClienteDao clienteDao = new ClienteDao(entityManager);
 
-        System.out.println(clienteDao.consultarPorId(new ClienteId( "maria@gmail.com", "29003182273")));
+        System.out.println(clienteDao.consultarPorNome("Antonio"));
 
         entityManager.getTransaction().commit();
         entityManager.close();

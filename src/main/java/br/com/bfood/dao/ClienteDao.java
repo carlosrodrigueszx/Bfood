@@ -1,6 +1,5 @@
 package br.com.bfood.dao;
 
-
 import br.com.bfood.model.Cliente;
 import br.com.bfood.model.ClienteId;
 
@@ -48,4 +47,5 @@ public class ClienteDao {
             throw new RuntimeException(e);
         }
     }
+
 }

@@ -31,6 +31,10 @@ public class Cliente {
         this.enderecoList.add(endereco);
     }
 
+    public void addContato(Contato contato){
+        this.contato = contato;
+    }
+
     public String getCpf() {
         return this.clienteId.getCpf();
     }
