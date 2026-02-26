@@ -6,6 +6,10 @@ import br.com.bfood.vo.ClienteVo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.io.ObjectStreamException;
 import java.util.List;
 import java.util.Objects;
@@ -71,4 +75,28 @@ public class EnderecoDao {
         return typedQuery.getResultList();
     }
 
+    public List<ClienteVo> consultarClientesComCriteria(final String estado, final String cidade, final String rua){
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<ClienteVo> query = builder.createQuery(ClienteVo.class);
+        Root<Endereco> root = query.from(Endereco.class);
+
+        query.multiselect(root.get("cliente").get("cpf"), root.get("cliente").get("nome"));
+
+        Predicate predicate = builder.and();
+
+        if (Objects.nonNull(estado)){
+            predicate = builder.and(predicate, builder.equal(builder.upper(root.get("estado")), estado.toUpperCase()));
+        }
+
+        if (Objects.nonNull(cidade)){
+            predicate = builder.and(predicate, builder.equal(builder.upper(root.get("cidade")), cidade.toUpperCase()));
+        }
+
+        if (Objects.nonNull(rua)){
+            predicate = builder.and(predicate, builder.equal(builder.upper(root.get("rua")), rua.toUpperCase()));
+        }
+
+        query.where(predicate);
+        return entityManager.createQuery(query).getResultList();
+    }
 }
