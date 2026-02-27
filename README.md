@@ -20,8 +20,6 @@ O projeto foi construído com foco em aprendizado e aplicação de conceitos ess
 - Construção de lógica de negócios
 - Boas práticas de código
 
-Este projeto é ideal para demonstrar capacidades técnicas em uma vaga de **estágio backend Java**.
-
 ---
 
 ## 🛠 Tecnologias Utilizadas
