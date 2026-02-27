@@ -38,29 +38,6 @@ O projeto utiliza as seguintes tecnologias:
 
 ---
 
-## 📁 Estrutura do Projeto
-
-A estrutura segue o padrão recomendado de camadas:
-
-src/
-└── main/
-    ├── java/
-    │   └── br/
-    │       └── com/
-    │           └── bfood/
-    │               ├── dao/        # Camada de acesso a dados (DAO / persistência)
-    │               ├── model/      # Entidades do domínio
-    │               ├── service/
-    │               │   └── teste/ 
-    │               └── utils/      # Classes utilitárias
-    │
-    └── resources/
-        └── application.properties  # Configurações da aplicação
-
-> Essa estrutura facilita **escala, manutenção e testes**, e é um padrão usado em APIs Java modernas.
-
----
-
 ## 🧪 Funcionalidades
 
 As principais features implementadas incluem:
